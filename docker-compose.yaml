@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  localstack:
+    image: localstack/localstack:0.11.2
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=fake
+      - AWS_SECRET_ACCESS_KEY=fake
+      - HOSTNAME_EXTERNAL=localstack
+    volumes:
+      - "/private${TMPDIR}/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
